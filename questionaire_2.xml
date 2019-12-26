@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<QuestionBank players="2">
+	<Question id="1" answerid="1">
+		<text>State whether the following statement is true or false? "In JavaScript "===" refers to the identity operator which checks equality with no type conversions". </text>
+		<answers>
+			<option id="1">True</option>
+			<option id="2">False</option>
+		</answers>
+	</Question>
+	<Question id="2" answerid="2">
+		<text>What is true regaring inline and external CSS files?</text>
+		<answers>
+			<option id="1">Inline CSS rules have the lowest priority</option>
+			<option id="2">Inline CSS overrides any external CSS rules</option>
+			<option id="3">All CSS rules should be stated as inline CSS rules</option>
+		</answers>
+	</Question>
+	<Question id="3" answerid="4">
+		<text>What is false regarding JavaScript?</text>
+		<answers>
+			<option id="1">JavaScript is a client-side scripting language</option>
+			<option id="2">AngularJS is JavaScript framework</option>
+			<option id="3">JQuery is a JavaScript framework</option>
+			<option id="4">JavaScript is a server-side scripting language</option>
+		</answers>
+	</Question>
+	<Question id="4" answerid="3">
+		<text>What is false HTML?</text>
+		<answers>
+			<option id="1">XHTML is an application of XML and can be parsed using an XML parser</option>
+			<option id="2">HTML5 allows web pages to embed multimedia within web browsers without 3rd party plugins</option>
+			<option id="3">HTML is a part of the HTTP protocol </option>			
+			<option id="4">HTML adheres to DOM standard</option>
+		</answers>
+	</Question>
+
+</QuestionBank>
