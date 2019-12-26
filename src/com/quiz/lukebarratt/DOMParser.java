@@ -18,7 +18,7 @@ public class DOMParser {
     static void parseXMLFile() {
         Scanner scanner = new Scanner(System.in);
         try {
-            File inputFile = new File("C://Users//Luke//IdeaProjects//ClientServerQuizGame//questionaire.xml");
+            File inputFile = new File("questionaire.xml");
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(inputFile);
