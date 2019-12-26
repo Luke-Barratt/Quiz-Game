@@ -46,7 +46,9 @@ public class Client {
                         break;
                     }
                 }
+                break;
             }
+            DOMParser.parseXMLFile();
 
             scanner.close();
             dataInputStream.close();

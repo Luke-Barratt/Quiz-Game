@@ -40,7 +40,7 @@ public class ClientHandler extends Thread {
                 //Receive name as input from the user and store in playerName variable
                 received = dataInputStream.readUTF();
                 setPlayerName(received);
-                System.out.println(playerName);
+                System.out.println("Player name: " + playerName);
 
                 if (received.equals("Exit")) {
                     System.out.println("Client " + this.socket + " sends exit...");
@@ -54,7 +54,7 @@ public class ClientHandler extends Thread {
                     //Receive name as input from the user and store in playerAge variable
                     received = dataInputStream.readUTF();
                     setPlayerAge(received);
-                    System.out.println(playerAge);
+                    System.out.println("Player age: " + playerAge);
 
                     if (received.equals("Exit")){
                         System.out.println("Client " + this.socket + " sends exit...");
@@ -64,7 +64,7 @@ public class ClientHandler extends Thread {
                         break;
                     }
                 }
-                break; //break out of infinite loop if user provides name and age correctly
+                break;
             } catch (IOException e) {
                 e.printStackTrace();
             }
