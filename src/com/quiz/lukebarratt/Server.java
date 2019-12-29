@@ -16,7 +16,7 @@ public class Server {
 
         ClientHandler[] playerThreads = new ClientHandler[players];
 
-        try{
+        try {
             ServerSocket serverSocket = new ServerSocket(5036);
             int playerCounter = 0;
             while (true) {
@@ -33,19 +33,19 @@ public class Server {
             e.printStackTrace();
         }
 
-        for(ClientHandler playerThread : playerThreads){
+        for (ClientHandler playerThread : playerThreads){
             playerThread.start();
         }
 
-        for(ClientHandler playerThread : playerThreads){
+        for (ClientHandler playerThread : playerThreads){
             playerThread.join();
         }
 
         int max = -1;
         String player = null;
 
-        for(ClientHandler playerThread : playerThreads) {
-            playerThread.sendFinalMessage(player + " has won the quiz!")
+        for (ClientHandler playerThread : playerThreads) {
+            playerThread.sendFinalMessage(player + " has won the quiz!");
         }
 
         System.out.println("Exiting game...");
