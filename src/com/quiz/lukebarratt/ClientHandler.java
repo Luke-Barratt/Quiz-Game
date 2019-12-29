@@ -63,8 +63,7 @@ public class ClientHandler extends Thread {
             clientInput = dataInputStream.readUTF().trim();
             age = clientInput;
 
-            System.out.println(firstName + " " + secondName + "has joined.");
-            System.out.println("please wait for the game to begin...");
+            System.out.println(firstName + " " + secondName + " has joined.");
 
         } catch (IOException e) {
             e.printStackTrace();
