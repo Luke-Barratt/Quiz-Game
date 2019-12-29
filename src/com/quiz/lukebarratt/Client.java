@@ -1,61 +1,83 @@
 package com.quiz.lukebarratt;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.InetAddress;
+import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
+
 
 public class Client {
-    public static void main(String[] args) throws IOException {
+
+    private String cMessage = "";
+    private String sMessage = "";
+
+    public void launchClient() {
 
         try {
-            Scanner scanner = new Scanner(System.in);
-
-            //getting localhost ip address
-            InetAddress ip = InetAddress.getByName("localhost");
-
-            //establish the connection with server port 5036
-            Socket socket = new Socket(ip, 5036);
-
-            //obtaining input and output streams
+            Socket socket = new Socket("localhost", 5036);
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-            //following loop performs the exchange of information between client and client handler
-            while (true) {
-                System.out.println(dataInputStream.readUTF());
-                String toSend = scanner.nextLine();
-                dataOutputStream.writeUTF(toSend);
+            while (!sMessage.equals("finished")) {
+                sMessage = dataInputStream.readUTF();
 
-                if (toSend.equals("Exit")) {
-                    System.out.println("Closing this connection: " + socket);
-                    socket.close();
-                    System.out.println("Connection closed");
+                if (sMessage.equals("finished")) {
+                    System.out.println("All questions completed.\n");
                     break;
-                } else {
-                    System.out.println(dataInputStream.readUTF());
-                    toSend = scanner.nextLine();
-                    dataOutputStream.writeUTF(toSend);
-
-                    if (toSend.equals("Exit")) {
-                        System.out.println("Closing this connection: " + socket);
-                        socket.close();
-                        System.out.println("Connection closed");
-                        break;
-                    }
                 }
-                break;
+
+                if (sMessage.equals("wait")) {
+                    System.out.println("Please wait for all players to connect...");
+                    continue;
+                }
+
+                if (sMessage.equals("firstname")) {
+                    System.out.println("Welcome to the quiz!");
+                    System.out.println("Enter your first name: ");
+                } else if (sMessage.equals("secondname")) {
+                    System.out.println("Enter your second name: ");
+                } else if (sMessage.equals("age")) {
+                    System.out.println("Enter your age: ");
+                } else {
+                    System.out.println(sMessage);
+                    System.out.println("Please give an answer: ");
+                }
+
+                cMessage = userInput(bufferedReader);
+
+                dataOutputStream.writeUTF(cMessage);
+                dataOutputStream.flush();
+                System.out.println();
             }
-            DOMParser.parseXMLFile();
 
-            scanner.close();
-            dataInputStream.close();
+            sMessage = dataInputStream.readUTF();
+
+            System.out.println(sMessage);
+            System.out.println();
+
             dataOutputStream.close();
+            dataInputStream.close();
+            socket.close();
 
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public String userInput(BufferedReader in) throws IOException {
+        long start = System.currentTimeMillis();
+        while ((System.currentTimeMillis() - start) < 30 * 1000 && !in.ready()) {
+        }
+        String input;
+        if (in.ready()) {
+            input = in.readLine();
+        } else {
+            input = "timeout";
+        }
+        return input;
+    }
+
+    public static void main(String[] args) {
+        new Client().launchClient();
+    }
 }
+
