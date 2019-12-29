@@ -6,7 +6,7 @@ import java.net.Socket;
 
 public class Server {
     public static void main(String[] args) throws Exception {
-        XMLParser xmlparser = new XMLParser("questionaire.xml");
+        XMLParser xmlparser = new XMLParser("questionnaire.xml");
 
         Map<Integer, Question> questions = xmlparser.getXmlParser();
         int players = xmlparser.getNoOfPlayers();
@@ -17,7 +17,7 @@ public class Server {
 
         try {
             ServerSocket serverSocket = new ServerSocket(5036);
-            int playerCounter = 1;
+            int playerCounter = 0;
             while (true) {
                 Socket server = serverSocket.accept();
                 System.out.println("Player " + playerCounter + " has joined the server");

@@ -22,6 +22,8 @@ public class ClientHandler extends Thread {
 
     private Map<Integer, Question> questions;
 
+    int i = 0;
+
     ClientHandler(Socket cliSocket, int playerScore, Map<Integer, Question> questions) {
         server = cliSocket;
         numOfPlayers = playerScore;
