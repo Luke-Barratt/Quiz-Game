@@ -34,8 +34,6 @@ public class ClientHandler extends Thread {
 
     private Map<Integer, Question> questions;
 
-    int i = 0;
-
     ClientHandler(Socket cliSocket, int playerScore, Map<Integer, Question> questions) {
         server = cliSocket;
         numOfPlayers = playerScore;
@@ -78,7 +76,7 @@ public class ClientHandler extends Thread {
             age = clientInput;
 
             //Print out client first and last name to server.
-            System.out.println(firstName + " " + secondName + " has joined.");
+            System.out.println(firstName + " " + secondName + " " + "(" + age + ")" + " has joined.");
 
         } catch (IOException e) {
             e.printStackTrace();
